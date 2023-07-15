@@ -1,7 +1,9 @@
-const Tooltip = () => {
+const Tooltip = (props) => {
 	return (
-		<div>
-			
+		<div className="tooltip">
+			{props.text}		
 		</div>
 	);
 }
+
+export default Tooltip;
