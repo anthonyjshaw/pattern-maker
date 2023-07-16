@@ -14,6 +14,32 @@ const App = () => {
 	function handleClick(e) {
 		setPicture({name: e.target.dataset.imgSrc, image_src: e.target.src});
 	}
+	const sizes = [
+		{
+			"label": "XS",
+			"name": "xs"
+		},
+		{
+			"label": "S",
+			"name": "s"
+		},
+		{
+			"label": "M",
+			"name": "m"
+		},
+		{
+			"label": "L",
+			"name": "l"
+		},
+		{
+			"label": "XL",
+			"name": "xl"
+		},
+		{
+			"label": "XXL",
+			"name": "xxl"
+		}
+	];
 	const templateOptions = [
 		{
 			name: 't-shirt',
@@ -67,7 +93,7 @@ const App = () => {
          <div>
             <h2>Select size</h2>
             <div className="size-options">
-				{<SizeOptions options="M"/>}
+				{<SizeOptions options={sizes} id="sizes"/>}
             </div>
             <div>
                <h3>Advanced</h3>
