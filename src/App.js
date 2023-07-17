@@ -7,7 +7,7 @@ import { PatternOptions } from "./PatternOptions";
 
 const tShirt = require("./lib/pattern_options/t-shirt.json");
 const trousers = require("./lib/pattern_options/trousers.json");
-const sweatshirt = require("./lib/pattern_options/sweatshirt.json")
+const sweatshirt = require("./lib/pattern_options/sweatshirt.json");
 
 console.log(tShirt);
 
