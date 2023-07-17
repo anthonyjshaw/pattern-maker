@@ -9,6 +9,15 @@
 			]
 		},
 		{
+			"name": "type",
+			"value": [
+				"baggy",
+				"muscle",
+				"slim",
+				"regular"
+			]
+		},
+		{
 			"name": "hem length",
 			"value": 0
 		},

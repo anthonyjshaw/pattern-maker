@@ -1,7 +1,7 @@
 {
 	"pattern_name": "trousers",
 	"elements": [{
-			"name": "sleeves",
+			"name": "pockets",
 			"value": [
 				"long-sleeve",
 				"short-sleeve"

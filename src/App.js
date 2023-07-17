@@ -6,8 +6,8 @@ import SizeOptions from "./SizeOptions";
 import { PatternOptions } from "./PatternOptions";
 
 const tShirt = require("./lib/pattern_options/t-shirt.json");
-
 const trousers = require("./lib/pattern_options/trousers.json");
+const sweatshirt = require("./lib/pattern_options/sweatshirt.json")
 
 console.log(tShirt);
 
@@ -21,9 +21,12 @@ const App = () => {
 		"t-shirt"
 	])
 
-	const patternOptionsArray = [tShirt, trousers].map(e => {
+	const patternOptionsArray = [tShirt, trousers, sweatshirt].map(e => {
 		return <PatternOptions key={e.pattern_name} name={e.pattern_name} elements={e.elements} />
 	});
+
+	console.log(patternOptionsArray)
+	const patternOption = patternOptionsArray.find(e => e.props.name === picture.name)
 
 	
 	function handleClick(e) {
@@ -114,7 +117,7 @@ const App = () => {
 						<div>
 							<h3>Advanced</h3>
 							<div id="advanced-pattern-options">
-								{patternOptionsArray}
+								{patternOption}
 							</div>
 						</div>
 					</div>
