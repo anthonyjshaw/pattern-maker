@@ -1,0 +1,29 @@
+{
+	"pattern_name": "t-shirt",
+	"elements": [
+		{
+			"name": "sleeves",
+			"value": [
+				"long-sleeve",
+				"short-sleeve"
+			]
+		},
+		{
+			"name": "type",
+			"value": [
+				"baggy",
+				"muscle",
+				"slim",
+				"regular"
+			]
+		},
+		{
+			"name": "hem length",
+			"value": 0
+		},
+		{
+			"name": "Collar type",
+			"value": ["crew", "v-neck"]
+		}
+	]
+}

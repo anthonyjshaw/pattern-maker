@@ -1,0 +1,23 @@
+{
+	"pattern_name": "skirt",
+	"elements": [
+		
+		{
+			"name": "type",
+			"value": [
+				"baggy",
+				"muscle",
+				"slim",
+				"regular"
+			]
+		},
+		{
+			"name": "hem length",
+			"value": 0
+		},
+		{
+			"name": "Collar type",
+			"value": ["crew", "v-neck"]
+		}
+	]
+}

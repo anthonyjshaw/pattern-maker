@@ -1,0 +1,19 @@
+{
+	"pattern_name": "trousers",
+	"elements": [{
+			"name": "pockets",
+			"value": [
+				"long-sleeve",
+				"short-sleeve"
+			]
+		},
+		{
+			"name": "hem Length",
+			"value": 0
+		},
+		{
+			"name": "style",
+			"value": ["baggy", "regular", "slim", "skinny"]
+		}
+	]
+}
