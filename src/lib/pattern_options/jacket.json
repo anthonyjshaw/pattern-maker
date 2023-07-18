@@ -1,0 +1,15 @@
+{
+	"pattern_name": "jacket",
+	"elements": [
+		
+		{
+			"name": "type",
+			"value": [
+				"letterman",
+				"denim",
+				"suit"
+			]
+		}
+		
+	]
+}

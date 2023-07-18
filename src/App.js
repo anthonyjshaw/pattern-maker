@@ -8,6 +8,11 @@ import { PatternOptions } from "./PatternOptions";
 const tShirt = require("./lib/pattern_options/t-shirt.json");
 const trousers = require("./lib/pattern_options/trousers.json");
 const sweatshirt = require("./lib/pattern_options/sweatshirt.json");
+const dress = require("./lib/pattern_options/dress.json");
+const shirt = require("./lib/pattern_options/shirt.json");
+const skirt = require("./lib/pattern_options/skirt.json");
+const jacket = require("./lib/pattern_options/jacket.json");
+
 
 console.log(tShirt);
 
@@ -21,7 +26,7 @@ const App = () => {
 		"t-shirt"
 	])
 
-	const patternOptionsArray = [tShirt, trousers, sweatshirt].map(e => {
+	const patternOptionsArray = [tShirt, trousers, sweatshirt, dress, skirt, shirt, jacket].map(e => {
 		return <PatternOptions key={e.pattern_name} name={e.pattern_name} elements={e.elements} />
 	});
 
