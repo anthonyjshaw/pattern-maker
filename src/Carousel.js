@@ -1,9 +1,12 @@
 const Carousel = (props) => {
-	const option = props.option;
+	const spanStyle = {
+		margin: '0px 8px'
+	}
 	return (
 		<div>
-			<h3><span onClick={props.backward}>{"<"}</span>{option}<span onClick={props.forward}>{">"}</span></h3> 
-
+			<h3>{props.option}</h3> 
+			<span style={spanStyle} onClick={props.handleClickBackward}>{"<"}</span>
+			<span style={spanStyle} onClick={props.handleClickForward}>{">"}</span>
 		</div>
 	);
 }

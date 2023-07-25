@@ -15,45 +15,42 @@ const skirt = require("./lib/pattern_options/skirt.json");
 const jacket = require("./lib/pattern_options/jacket.json");
 
 
-console.log(tShirt);
 
 const App = () => {
 	const [picture, setPicture] = useState({
 		name: 't-shirt',
 		image_src: '/t-shirt.svg'
 	});
-	const [carouselOption, setCarouselOption ] = useState('Front');
 	const [patternOptionValues, setPatternOptionValues] = useState([
 		"t-shirt"
 	])
-	let carouselIndex = 0;
-	let carouselOptions = ['Front', 'Back', "Left Side", "Right Side", "Pieces"];
+	const [carouselIndex, setCarouselIndex] = useState(0);
+	const carouselOptions = ['Front', 'Back', "Left Side", "Right Side", "Pieces"];
 	const patternOptionsArray = [tShirt, trousers, sweatshirt, dress, skirt, shirt, jacket].map(e => {
 		return <PatternOptions key={e.pattern_name} name={e.pattern_name} elements={e.elements} />
 	});
+	const [carouselOption, setCarouselOption] = useState(carouselOptions[carouselIndex]);
 
 	const patternOption = patternOptionsArray.find(e => e.props.name === picture.name)
 
-
-	
 	function handleClickPicture(e) {
 		setPicture({ name: e.target.dataset.imgSrc, image_src: e.target.src });
 	}
 
 	function handleClickCarouselForward(e) {
-		if (carouselIndex > carouselLength) {
-			carouselIndex = 0;
+		if (carouselIndex >= carouselOptions.length - 1) {
+			setCarouselIndex(0);
 		} else {
-			carouselIndex++;
+			setCarouselIndex(carouselIndex + 1)			
 		}
 		setCarouselOption(carouselOptions[carouselIndex])
 	}
 
 	function handleClickCarouselBackward(e) {
-		if (carouselIndx < 0) {
-			carouselIndex = 0;
+		if (carouselIndex < 1) {
+			setCarouselIndex(carouselOptions.length -1);
 		} else {
-			carouselIndex--;
+			setCarouselIndex(carouselIndex - 1);
 		}
 		setCarouselOption(carouselOptions[carouselIndex]);
 	}
@@ -125,7 +122,7 @@ const App = () => {
 						<img src={`${picture.image_src}`} alt={`Image of ${picture.name}`} className="picture-item" />
 					</div>
 					<div>
-						<Carousel option={carouselOption}/>
+						<Carousel option={carouselOption} handleClickForward={handleClickCarouselForward} handleClickBackward={handleClickCarouselBackward}/>
 					</div>
 				</div>
 				<div className="side-panel">
