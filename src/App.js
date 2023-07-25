@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "./Button";
 import TemplateOption from "./TemplateOption";
 import Tooltip from "./Tooltip";
 import SizeOptions from "./SizeOptions";
 import { PatternOptions } from "./PatternOptions";
+import Carousel from "./Carousel";
 
 const tShirt = require("./lib/pattern_options/t-shirt.json");
 const trousers = require("./lib/pattern_options/trousers.json");
@@ -14,28 +15,50 @@ const skirt = require("./lib/pattern_options/skirt.json");
 const jacket = require("./lib/pattern_options/jacket.json");
 
 
-console.log(tShirt);
 
 const App = () => {
-	const [picture, setPicture] = useState({
-		name: 't-shirt',
-		image_src: '/t-shirt.svg'
-	});
-
-	const [patternOptionValues, setPatternOptionValues] = useState([
+	useEffect(() => {
+		setCarouselOption(carouselOptions[carouselIndex]);
+	})
+	const [patternOptionValues, setPatternOptionValues] = useState(
 		"t-shirt"
-	])
-
+	)
+	const [carouselIndex, setCarouselIndex] = useState(0);
+	const carouselOptions = ['Front', 'Back', "Left Side", "Right Side"];
 	const patternOptionsArray = [tShirt, trousers, sweatshirt, dress, skirt, shirt, jacket].map(e => {
 		return <PatternOptions key={e.pattern_name} name={e.pattern_name} elements={e.elements} />
 	});
+	const [carouselOption, setCarouselOption] = useState(carouselOptions[carouselIndex]);
 
-	console.log(patternOptionsArray)
-	const patternOption = patternOptionsArray.find(e => e.props.name === picture.name)
+	const [picture, setPicture] = useState({
+		name: 't-shirt',
+		image_src: `/${carouselOption.toLowerCase()}/t-shirt.svg`
+	});
+	const patternOption = patternOptionsArray.find(e => e.props.name === patternOptionValues)
 
-	
-	function handleClick(e) {
-		setPicture({ name: e.target.dataset.imgSrc, image_src: e.target.src });
+	function handleClickPicture(e) {
+		setPatternOptionValues(e.target.dataset.imgSrc)
+		setCarouselIndex(0);
+
+		setPicture({ name: e.target.dataset.imgSrc, image_src: `/front/${e.target.dataset.imgSrc}.svg` });
+	}
+
+	function handleClickCarouselForward(e) {
+		if (carouselIndex >= carouselOptions.length - 1) {
+			setCarouselIndex(0);
+		} else {
+			setCarouselIndex(carouselIndex + 1)			
+		}
+		setPicture({ name: e.target.dataset.imgSrc, image_src: `/${carouselOption.toLowerCase().replaceAll(' ', '-')}/${patternOptionValues}.svg` });
+	}
+
+	function handleClickCarouselBackward(e) {
+		if (carouselIndex < 1) {
+			setCarouselIndex(carouselOptions.length -1);
+		} else {
+			setCarouselIndex(carouselIndex - 1);
+		}
+		setPicture({ name: e.target.dataset.imgSrc, image_src: `/${carouselOption.toLowerCase().replaceAll(' ', '-')}/${patternOptionValues}.svg` });
 	}
 	const sizes = [
 		{
@@ -66,33 +89,33 @@ const App = () => {
 	const templateOptions = [
 		{
 			name: 't-shirt',
-			icon: "/t-shirt.svg"
+			icon: "/front/t-shirt.svg"
 		},
 		{
 			name: 'trousers',
-			icon: '/trousers.svg'
+			icon: '/front/trousers.svg'
 		},
 		{
 			name: 'sweatshirt',
-			icon: '/sweatshirt.svg'
+			icon: '/front/sweatshirt.svg'
 		},
 		{
 			name: 'jacket',
-			icon: '/jacket.svg'
+			icon: '/front/jacket.svg'
 		},
 		{
 			name: 'dress',
-			icon: '/dress.svg'
+			icon: '/front/dress.svg'
 		},
 		{
 			name: 'skirt',
-			icon: '/skirt.svg'
+			icon: '/front/skirt.svg'
 		},
 		{
 			name: 'shirt',
-			icon: '/shirt.svg'
+			icon: '/front/shirt.svg'
 		}
-	].map(e => <TemplateOption icon={e.icon} text={e.name} className={'template-option-img'} alt={`SVG of ${e.name}`} onClick={handleClick} key={e.name} tooltip={<Tooltip text={e.name} />} />);
+	].map(e => <TemplateOption icon={e.icon} text={e.name} className={'template-option-img'} alt={`SVG of ${e.name}`} onClick={handleClickPicture} key={e.name} tooltip={<Tooltip text={e.name} />} />);
 	return (
 		<div>
 			<h1>Fashion app</h1>
@@ -105,7 +128,7 @@ const App = () => {
 						<img src={`${picture.image_src}`} alt={`Image of ${picture.name}`} className="picture-item" />
 					</div>
 					<div>
-						<h3>Front</h3>
+						<Carousel option={carouselOption} handleClickForward={handleClickCarouselForward} handleClickBackward={handleClickCarouselBackward}/>
 					</div>
 				</div>
 				<div className="side-panel">
